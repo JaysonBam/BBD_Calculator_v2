@@ -1,4 +1,3 @@
-// ui.ts
 (() => {
     // 1. Theme Logic
     const setTheme = () => {
@@ -73,22 +72,18 @@
         }
     };
 
-    // Run rendering
     renderButtons();
 
     // 3. Scaling Logic
     function scaleCalculator() {
         const card = document.querySelector('form.card') as HTMLElement;
         if (!card) return;
-
-        // Reset to natural state to measure dimensions
         card.removeAttribute('style');
         document.body.style.overflow = '';
 
-        const availableHeight = window.innerHeight - 20; // 20px padding
+        const availableHeight = window.innerHeight - 20;
         const { width, height } = card.getBoundingClientRect();
 
-        // Only scale if the calculator is taller than the screen
         if (height > availableHeight) {
             const scale = availableHeight / height;
             
@@ -108,6 +103,5 @@
     }
 
     ['resize', 'load', 'DOMContentLoaded'].forEach(e => window.addEventListener(e, scaleCalculator));
-    // Call immediately in case DOM is ready
     scaleCalculator();
 })();

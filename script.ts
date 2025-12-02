@@ -2,7 +2,6 @@
 /// <reference path="input-handler.ts" />
 
 (() => {
-    // Check if we are in a browser environment with DOM
     if (typeof document === 'undefined') return;
 
     const calculatorForm = document.querySelector('form')
@@ -11,7 +10,6 @@
         if (!displayElement) {return}
         const display = displayElement;
         
-        // Initialize Calculator
         const calc = new CalculatorApp.Calculator();
 
         const degBtn = document.getElementById('degBtn');
@@ -33,7 +31,6 @@
                 <button type="button" class="btn-close" aria-label="Close"></button>
             `;
 
-            // Manual close handler replacing Bootstrap JS
             const closeBtn = alertDiv.querySelector('.btn-close');
             if (closeBtn) {
                 closeBtn.addEventListener('click', () => alertDiv.remove());

@@ -7,12 +7,6 @@ namespace CalculatorApp {
     // Scientific functions
     private static readonly functions: string[] = ['sin', 'cos', 'tan', 'log', 'ln', 'sqrt'];
 
-    /**
-     * Handles the logic for appending or modifying the input string based on the new input.
-     * @param current The current value of the display.
-     * @param input The input character or command.
-     * @returns The new value for the display.
-     */
     public static handleInput(current: string, input: string): string {
         if (current === 'Error' || current === 'NaN') {
             current = '';
@@ -34,11 +28,6 @@ namespace CalculatorApp {
         return current;
     }
 
-    /**
-     * Handles the smart delete logic.
-     * @param current The current value of the display.
-     * @returns The new value after deletion.
-     */
     public static handleDelete(current: string): string {
         if (current.length === 0) return current;
 
@@ -63,11 +52,6 @@ namespace CalculatorApp {
         return current.slice(0, -1);
     }
 
-    /**
-     * Validates the brackets in the expression.
-     * @param expression The expression string to validate.
-     * @returns An error message if invalid, or null if valid.
-     */
     public static validateBrackets(expression: string): string | null {
         let checksum: number = 0;
         for (let index = 0; index < expression.length; index++) {

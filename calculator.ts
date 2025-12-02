@@ -48,8 +48,6 @@ namespace CalculatorApp {
             output.push(token);
         };
         const handlePop = () => stack.pop();
-
-        // Updated regex to match functions, constants, and numbers
         const tokens = infix.match(/([a-zA-Z]+)|(\d+(\.\d+)?)|[+\-*/^()%]|(\.\d+)/g);
         if (!tokens) return '';
 
@@ -102,9 +100,8 @@ namespace CalculatorApp {
                     addToOutput(handlePop()!);
                     topOfStack = peek();
                 }
-                handlePop(); // Pop '('
+                handlePop();
                 
-                // If the token at the top of the stack is a function, pop it to the output queue.
                 if (stack.length > 0 && this.operators[peek()] && this.operators[peek()].type === 'unary') {
                         addToOutput(handlePop()!);
                 }
@@ -139,7 +136,7 @@ namespace CalculatorApp {
                 } else if (op.type === 'unary') {
                     const x = stack.pop();
                     if (!x) throw new Error('Invalid expression');
-                    z.left = x; // Convention: use left for unary
+                    z.left = x;
                 }
                 
                 stack.push(z);
@@ -190,7 +187,6 @@ namespace CalculatorApp {
     //Calculates value of the string
     public calculate(infix: string): string {
         try {
-            // Replace Ans, pi, e
             let processedInfix = infix.replace(/Ans/g, `(${this.prevAns})`);
             processedInfix = processedInfix.replace(/pi/g, Math.PI.toString());
             processedInfix = processedInfix.replace(/\be\b/g, Math.E.toString());
@@ -204,7 +200,6 @@ namespace CalculatorApp {
                 return 'Error';
             }
 
-            // Check for very small numbers (e.g. 1e-16) and round to 0
             const numResult = parseFloat(result);
             if (Math.abs(numResult) < 1e-15 && numResult !== 0) {
                 return '0';
