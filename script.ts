@@ -30,12 +30,21 @@
             alertDiv.role = 'alert';
             alertDiv.innerHTML = `
                 ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" aria-label="Close"></button>
             `;
+
+            // Manual close handler replacing Bootstrap JS
+            const closeBtn = alertDiv.querySelector('.btn-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => alertDiv.remove());
+            }
+
             document.body.appendChild(alertDiv);
             
             setTimeout(() => {
-                alertDiv.remove();
+                if (document.body.contains(alertDiv)) {
+                    alertDiv.remove();
+                }
             }, 3000);
         }
 

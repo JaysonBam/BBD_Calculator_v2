@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["script.ts", "ui.ts"]
+  "include": ["ui.ts", "script.ts"]
 }

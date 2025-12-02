@@ -203,6 +203,12 @@ namespace CalculatorApp {
             if (result === 'NaN' || result === 'Infinity' || result === '-Infinity') {
                 return 'Error';
             }
+
+            // Check for very small numbers (e.g. 1e-16) and round to 0
+            const numResult = parseFloat(result);
+            if (Math.abs(numResult) < 1e-15 && numResult !== 0) {
+                return '0';
+            }
             
             return result;
         } catch (e) {
